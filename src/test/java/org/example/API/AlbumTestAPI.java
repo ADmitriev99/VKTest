@@ -64,17 +64,6 @@ public class AlbumTestAPI {
         String album2 = response.jsonPath().getString("response.id");
         request.get(properties.getProperty("baseURI")+ "photos.move?target_album_id=" + album2 + "&photo_id=" +photo +"&" + properties.getProperty("access_token")+properties.getProperty("V"));
         request.get(properties.getProperty("baseURI")+ "photos.deleteAlbum?album_id=" + album1 + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
-        PropertiesConfiguration configuration = null;
-        try {
-            configuration = new PropertiesConfiguration(path);
-        } catch (ConfigurationException e) {
-            e.printStackTrace();
-        }
-        configuration.setProperty("albumId", album2);
-        try {
-            configuration.save();
-        } catch (ConfigurationException e) {
-            e.printStackTrace();
-        }
+        request.get(properties.getProperty("baseURI")+ "photos.deleteAlbum?album_id=" + album2 + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
     }
 }

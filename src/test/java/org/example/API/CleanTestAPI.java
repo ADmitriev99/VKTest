@@ -27,14 +27,5 @@ public class CleanTestAPI {
         int chat =2000000000 + Integer.parseInt(properties.getProperty("chatId"));
         request.post(properties.getProperty("baseURI")+ "messages.deleteConversation?peer_id=" + chat + "&"+ properties.getProperty("access_token")+properties.getProperty("V"));
         request.get(properties.getProperty("baseURI")+ " groups.leave?group_id=" + properties.getProperty("groupId") + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
-        Thread.sleep(1000);
-        Response response;
-        response = request.get(properties.getProperty("baseURI") + "photos.deleteAlbum?album_id=" + properties.getProperty("albumId") + "&" + properties.getProperty("access_token") + properties.getProperty("V"));
-        System.out.println(response.body().asString());
-        while (!(response.jsonPath().getString("response").equals("1")));{
-           System.out.println(response.jsonPath().getString("response"));
-           System.out.println(response);
-           response = request.get(properties.getProperty("baseURI") + "photos.deleteAlbum?album_id=" + properties.getProperty("albumId") + "&" + properties.getProperty("access_token") + properties.getProperty("V"));
-        }
     }
 }
