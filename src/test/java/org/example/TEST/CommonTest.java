@@ -11,6 +11,6 @@ public class CommonTest {
     @Test
     public void Common() {
         APITest();
-        UITest();
+        //UITest();
     }
 }

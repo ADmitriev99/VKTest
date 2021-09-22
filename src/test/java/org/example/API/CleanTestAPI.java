@@ -24,8 +24,8 @@ public class CleanTestAPI {
         RequestSpecification request = RestAssured.given();
         request.post(properties.getProperty("baseURI")+ "photos.delete?photo_id="+ properties.getProperty("mainPhotoId")+ "&" + properties.getProperty("access_token")+properties.getProperty("V"));
         request.get(properties.getProperty("baseURI")+ "account.saveProfileInfo?" + "relation=0&" + "country_id=0&" + "city_id=0&" + properties.getProperty("access_token")+properties.getProperty("V"));
-        int chat =2000000000 + Integer.parseInt(properties.getProperty("chatId"));
-        request.post(properties.getProperty("baseURI")+ "messages.deleteConversation?peer_id=" + chat + "&"+ properties.getProperty("access_token")+properties.getProperty("V"));
+        request.post(properties.getProperty("baseURI")+ "messages.deleteConversation?peer_id=" + properties.getProperty("chatId") + "&"+ properties.getProperty("access_token")+properties.getProperty("V"));
         request.get(properties.getProperty("baseURI")+ " groups.leave?group_id=" + properties.getProperty("groupId") + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
+        request.get(properties.getProperty("baseURI")+ "photos.deleteAlbum?album_id=" + properties.getProperty("albumId") + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
     }
 }

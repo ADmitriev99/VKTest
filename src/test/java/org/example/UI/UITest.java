@@ -28,7 +28,7 @@ public class UITest {
     @Story("UI test")
     @Description("UI test on VK.com")
     public static void UITest() {
-        System.setProperty("webdriver.chrome.driver", "A:\\Documents\\JAVA\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "\\src\\test\\resources\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
