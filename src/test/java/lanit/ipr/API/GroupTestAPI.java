@@ -4,13 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import lanit.ipr.PropertiesTest;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.junit.jupiter.api.Assertions;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 
 import static io.qameta.allure.Allure.step;
 

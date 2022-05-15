@@ -13,7 +13,6 @@ import java.io.File;
 import static io.qameta.allure.Allure.step;
 
 public class AlbumTestAPI extends PropertiesTest {
-    private static okhttp3.Response response2;
     private static String uploadUrl;
     private static Response response;
     private static String server;

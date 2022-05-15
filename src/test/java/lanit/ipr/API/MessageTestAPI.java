@@ -28,8 +28,6 @@ public class MessageTestAPI extends PropertiesTest {
             request.post(properties.getProperty("baseURI")+ "messages.editChat?title=" + "Ну очень важная беседа&chat_id="+ chatId+ "&" + properties.getProperty("access_token")+properties.getProperty("V"));
         });
         step("Добавление пользователя в беседу", ()->{
-            /*response = request.get(properties.getProperty("baseURI")+ "messages.addChatUser?user_id=198846257&chat_id="+ chatId+ "&" + properties.getProperty("access_token")+properties.getProperty("V"));
-            Assertions.assertTrue(response.jsonPath().getString("response").equals("1"));*/
             response = request.get(properties.getProperty("baseURI")+ "messages.addChatUser?user_id=722323315&chat_id="+ chatId+ "&" + properties.getProperty("access_token")+properties.getProperty("V"));
             Assertions.assertTrue(response.jsonPath().getString("response").equals("1"));
         });

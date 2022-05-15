@@ -12,7 +12,7 @@ import static io.qameta.allure.Allure.step;
 
 public class LoginTestUI extends PropertiesTest {
 
-    public static void LoginStepUI() throws SQLException {
+    public static void LoginStepUI(){
         String loginUser = properties.getProperty("login");
         String password = properties.getProperty("password");
         try {

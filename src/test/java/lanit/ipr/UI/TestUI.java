@@ -9,8 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLException;
-
 import static io.qameta.allure.Allure.step;
 import static lanit.ipr.UI.DiscussionTestUI.DiscussionStepUI;
 import static lanit.ipr.UI.LoginTestUI.LoginStepUI;

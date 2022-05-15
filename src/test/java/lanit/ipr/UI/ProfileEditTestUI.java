@@ -3,9 +3,6 @@ package lanit.ipr.UI;
 import lanit.ipr.elements.Asserts;
 import lanit.ipr.elements.buttons.Buttons;
 import lanit.ipr.elements.textForms.TextForms;
-import org.junit.jupiter.api.Assertions;
-
-import java.io.File;
 
 import static io.qameta.allure.Allure.step;
 

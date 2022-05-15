@@ -6,10 +6,6 @@ import io.restassured.specification.RequestSpecification;
 import lanit.ipr.PropertiesTest;
 import org.junit.jupiter.api.Assertions;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 import static io.qameta.allure.Allure.step;
 
 public class ProfileEditTestAPI extends PropertiesTest {
