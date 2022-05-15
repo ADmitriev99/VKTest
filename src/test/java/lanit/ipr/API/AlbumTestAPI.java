@@ -78,6 +78,7 @@ public class AlbumTestAPI extends PropertiesTest {
         step("Создание нового альбома, получение id альбома",()->{
             response = request.get(properties.getProperty("baseURI")+ "photos.createAlbum?privacy_view=all&title=" + "АТ альбом 2&" + properties.getProperty("access_token")+properties.getProperty("V"));
             album2 = response.jsonPath().getString("response.id");
+            Assertions.assertTrue(!album2.isEmpty());
             properties.setProperty("albumId", album2);
         });
         step("Перемещение фотографии во второй альбом",()->{

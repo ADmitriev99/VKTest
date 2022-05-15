@@ -20,7 +20,6 @@ public class GroupTestAPI extends PropertiesTest {
         step("Создание группы \"АТ группа\", получение id группы", ()->{
             response = request.get(properties.getProperty("baseURI")+ "groups.create?title=" + "АТ группа&type=group&public_subcategory=0&" + properties.getProperty("access_token")+properties.getProperty("V"));
             groupId = response.jsonPath().getString("response.id");
-            System.out.println(response.body().asString());
             Assertions.assertTrue(!groupId.isEmpty());
             properties.setProperty("groupId", groupId);
         });
