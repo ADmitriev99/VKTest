@@ -18,15 +18,16 @@ import static lanit.ipr.API.ProfileEditTestAPI.ProfileEditStepAPI;
 @Feature("API test")
 @DisplayName("API Test on VK.com")
 public class APITest {
+
     @Test
     @Tag("API test")
     @Story("API test")
     @Description("API test on VK.com")
     public void APITest() {
-        step("Редактирование главной фотографии",()-> {PhotoEditStepAPI();});
+        /*step("Редактирование главной фотографии",()-> {PhotoEditStepAPI();});
         step("Редактирование данных профиля", ()-> {ProfileEditStepAPI();});
         step("Работа с беседой", ()-> {MessageStepAPI();});
-        step("Работа с группой", ()-> {GroupStepAPI();});
+        step("Работа с группой", ()-> {GroupStepAPI();});*/
         step("Работа с альбомами", ()-> {AlbumStep();});
     }
 

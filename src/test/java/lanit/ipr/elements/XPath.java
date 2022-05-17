@@ -51,4 +51,8 @@ public class XPath {
     public static By byClassButton(String clas){
         return By.xpath("//button[@class='" + clas + "']");
     }
+
+    public static By byTitle(String title){
+        return By.xpath("//*[@title='" + title + "']");
+    }
 }

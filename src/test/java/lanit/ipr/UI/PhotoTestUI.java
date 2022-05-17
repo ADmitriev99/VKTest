@@ -10,7 +10,7 @@ import java.io.File;
 
 import static io.qameta.allure.Allure.step;
 
-public class PhotoTestUI extends DriverTest {
+public class PhotoTestUI {
 
     public static void PhotoStepUI() {
         step("Переход на страницу c фотографиями",()-> {

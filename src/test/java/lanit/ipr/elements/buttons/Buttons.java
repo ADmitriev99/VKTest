@@ -6,8 +6,6 @@ import lanit.ipr.elements.XPath;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Buttons extends DriverTest {
 
@@ -51,6 +49,13 @@ public class Buttons extends DriverTest {
         driver.findElement(By.xpath("//*[@id='index_login']//following-sibling::*[contains(text(),'Войти')]")).click();
     }
 
+    public static void deleteConversation(){
+        Actions builder = new Actions(driver);
+        WebElement myElement = driver.findElement(By.xpath("//div[@class=\"im-page--header-more im-page--header-menu-button _im_dialog_action_wrapper\"]/div/div"));
+        builder.moveToElement(myElement).build().perform();
+    }
+
+
     @Step("Нажать элемент с тегом {name}")
     public static void clickByName(String name){
         driver.findElement(XPath.byName(name)).click();
@@ -76,5 +81,10 @@ public class Buttons extends DriverTest {
         Actions builder = new Actions(driver);
         WebElement myElement = driver.findElement(XPath.byClass(clas));
         builder.moveToElement(myElement).build().perform();
+    }
+
+    @Step("Нажать элемент с тегом {title}")
+    public static void clickByTitle(String title){
+        driver.findElement(XPath.byTitle(title)).click();
     }
 }

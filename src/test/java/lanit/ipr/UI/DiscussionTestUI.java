@@ -1,13 +1,12 @@
 package lanit.ipr.UI;
 
-import lanit.ipr.DriverTest;
 import lanit.ipr.elements.Asserts;
 import lanit.ipr.elements.buttons.Buttons;
 import lanit.ipr.elements.textForms.TextForms;
 
 import static io.qameta.allure.Allure.step;
 
-public class DiscussionTestUI extends DriverTest {
+public class DiscussionTestUI  {
 
     public static void DiscussionStepUI() {
         step("Переход на страницу c группами",()-> {

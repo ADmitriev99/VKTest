@@ -4,6 +4,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import lanit.ipr.PropertiesTest;
+import okhttp3.*;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 
 import static io.qameta.allure.Allure.step;
@@ -15,6 +17,10 @@ public class MessageTestAPI extends PropertiesTest {
     private static int random = (int) (Integer.MAX_VALUE*Math.random());
     private static String messageId;
     private static String chatId;
+
+    public static int getRandom(){
+        return (int) (Integer.MAX_VALUE*Math.random());
+    }
 
     public static void MessageStepAPI(){
         step("Создание беседы с названием \"АТ беседа\", получение id беседы", ()->{
@@ -32,10 +38,15 @@ public class MessageTestAPI extends PropertiesTest {
             Assertions.assertTrue(response.jsonPath().getString("response").equals("1"));
         });
         step("Отправка сообщения \"Это очень важная беседа, выходить!\", получение id сообщения",()->{
-            response = request.get(properties.getProperty("baseURI")+ "messages.send?random_id="+ random +"&message=" + "Это очень важная беседа, выходить!&peer_id=" + chat + "&intent=default&" + properties.getProperty("access_token")+properties.getProperty("V"));
-            System.out.println(properties.getProperty("baseURI")+ "messages.send?random_id="+ random +"&message=" + "Это очень важная беседа, выходить!&peer_id=" + chat + "&intent=default&" + properties.getProperty("access_token")+properties.getProperty("V"));
-            System.out.println("\n"+response.body().asString());
-            messageId = response.jsonPath().getString("response");
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .build();
+            Request request2 = new Request.Builder()
+                    .url(properties.getProperty("baseURI")+ "messages.send?random_id="+ getRandom() +"&message=" + "Это очень важная беседа, выходить!&peer_id=" + chat + "&intent=default&" + properties.getProperty("access_token")+properties.getProperty("V"))
+                    .addHeader("Cookie", "remixlang=0")
+                    .build();
+            okhttp3.Response response2 = client.newCall(request2).execute();
+            JSONObject jsonObject = new JSONObject(response2.body().string());
+            messageId = jsonObject.get("response").toString();
             Assertions.assertTrue(!messageId.isEmpty());
         });
         step("Редактирование отправленного сообщения в \"Это очень важная беседа, НЕ выходить!\"", ()->{
@@ -45,7 +56,13 @@ public class MessageTestAPI extends PropertiesTest {
             response = request.post(properties.getProperty("baseURI")+ "messages.pin?message_id=" + messageId+  "&chat_id="+ chatId + "&peer_id=" + chat + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
         });
         step("Отправка нового сообщения \"А нет, лучше в группу\"", ()->{
-            response = request.get(properties.getProperty("baseURI")+ "messages.send?random_id="+ (int)Math.sqrt(random) +"&message=" + "А нет, лучше в группу&chat_id="+ chatId + "&peer_id=" + chat + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .build();
+            Request request2 = new Request.Builder()
+                    .url(properties.getProperty("baseURI")+ "messages.send?random_id="+ getRandom() +"&message=" + "А нет, лучше в группу&peer_id=" + chat + "&intent=default&" + properties.getProperty("access_token")+properties.getProperty("V"))
+                    .addHeader("Cookie", "remixlang=0")
+                    .build();
+            client.newCall(request2).execute();
         });
     }
 }

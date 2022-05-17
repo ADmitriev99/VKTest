@@ -1,6 +1,5 @@
 package lanit.ipr.UI;
 
-import lanit.ipr.DriverTest;
 import lanit.ipr.elements.Asserts;
 import lanit.ipr.elements.buttons.Buttons;
 import lanit.ipr.elements.textForms.TextForms;
@@ -8,7 +7,7 @@ import lanit.ipr.elements.textForms.TextForms;
 
 import static io.qameta.allure.Allure.step;
 
-public class MessageTestUI extends DriverTest {
+public class MessageTestUI {
 
     public static void MessageStepUI() {
         step("Переход на страницу c сообщениями",()-> {
