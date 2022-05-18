@@ -32,4 +32,9 @@ public class Asserts extends DriverTest {
     public static void displayedByTextLike(String text) {
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(XPath.byTextLike(text)));
     }
+
+    @Step("Проверить отображение элемента с тегом {arialabel}")
+    public static void displayedByAriaLabel(String arialabel) {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(XPath.byAriaLabel(arialabel)));
+    }
 }

@@ -47,6 +47,7 @@ public class MessageTestUI {
             Asserts.displayedByTextLike("(ред.)");
             Asserts.displayedByClass("ui_clean_list im-mess-stack--mess _im_stack_messages");
             Buttons.clickByClass("ui_clean_list im-mess-stack--mess _im_stack_messages");
+            Asserts.displayedByAriaLabel("Закрепить сообщение");
             Buttons.clickByAriaLabel("Закрепить сообщение");
         });
         step("Отправка в группу сообщения - \"А нет, лучше в группу\"",()-> {

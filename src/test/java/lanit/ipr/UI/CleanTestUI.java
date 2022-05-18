@@ -1,8 +1,8 @@
 package lanit.ipr.UI;
 
 import lanit.ipr.DriverTest;
+import lanit.ipr.elements.Asserts;
 import lanit.ipr.elements.buttons.Buttons;
-import org.openqa.selenium.By;
 
 public class CleanTestUI extends DriverTest {
 
@@ -16,6 +16,7 @@ public class CleanTestUI extends DriverTest {
             Buttons.clickByIdPrevious("pedit_status");
             Buttons.clickByText("Не выбрано");
             Buttons.clickByTextLike("Сохранить");
+            Asserts.displayedByTextLike("Изменения сохранены");
             Buttons.clickById("ui_rmenu_contacts");
             Buttons.clickByIdPrevious("pedit_country");
             Buttons.clickByTitle("Не выбрана");
@@ -34,7 +35,6 @@ public class CleanTestUI extends DriverTest {
             Buttons.clickById("page_actions_btn");
             Buttons.clickByText("Выйти из группы");
             Buttons.clickByText("Выйти из группы");
-
         } catch (Exception e) {
         }try {
             Buttons.clickByText("Фотографии");
