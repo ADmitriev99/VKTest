@@ -14,7 +14,6 @@ public class MessageTestAPI extends PropertiesTest {
     private static RequestSpecification request = RestAssured.given();
     private static Response response;
     private static int chat;
-    private static int random = (int) (Integer.MAX_VALUE*Math.random());
     private static String messageId;
     private static String chatId;
 
@@ -26,7 +25,7 @@ public class MessageTestAPI extends PropertiesTest {
         step("Создание беседы с названием \"АТ беседа\", получение id беседы", ()->{
             response = request.get(properties.getProperty("baseURI")+ "messages.createChat?title=" + "АТ беседа&" + properties.getProperty("access_token")+properties.getProperty("V"));
             chatId = response.jsonPath().getString("response");
-            Assertions.assertTrue(!chatId.isEmpty());
+            Assertions.assertFalse(chatId.isEmpty());
             chat = 2000000000 + Integer.parseInt(chatId);
             properties.setProperty("chatId", String.valueOf(chat));
         });
@@ -35,7 +34,7 @@ public class MessageTestAPI extends PropertiesTest {
         });
         step("Добавление пользователя в беседу", ()->{
             response = request.get(properties.getProperty("baseURI")+ "messages.addChatUser?user_id=722323315&chat_id="+ chatId+ "&" + properties.getProperty("access_token")+properties.getProperty("V"));
-            Assertions.assertTrue(response.jsonPath().getString("response").equals("1"));
+            Assertions.assertEquals("1", response.jsonPath().getString("response"));
         });
         step("Отправка сообщения \"Это очень важная беседа, выходить!\", получение id сообщения",()->{
             OkHttpClient client = new OkHttpClient().newBuilder()
@@ -47,7 +46,7 @@ public class MessageTestAPI extends PropertiesTest {
             okhttp3.Response response2 = client.newCall(request2).execute();
             JSONObject jsonObject = new JSONObject(response2.body().string());
             messageId = jsonObject.get("response").toString();
-            Assertions.assertTrue(!messageId.isEmpty());
+            Assertions.assertFalse(messageId.isEmpty());
         });
         step("Редактирование отправленного сообщения в \"Это очень важная беседа, НЕ выходить!\"", ()->{
             response = request.post(properties.getProperty("baseURI")+ "messages.edit?message_id=" + messageId+  "&chat_id="+ chatId + "&peer_id=" + chat + "&message=Это очень важная беседа, НЕ выходить!&" + properties.getProperty("access_token")+properties.getProperty("V"));

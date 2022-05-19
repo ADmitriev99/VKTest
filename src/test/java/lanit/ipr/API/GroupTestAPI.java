@@ -20,13 +20,13 @@ public class GroupTestAPI extends PropertiesTest {
         step("Создание группы \"АТ группа\", получение id группы", ()->{
             response = request.get(properties.getProperty("baseURI")+ "groups.create?title=" + "АТ группа&type=group&public_subcategory=0&" + properties.getProperty("access_token")+properties.getProperty("V"));
             groupId = response.jsonPath().getString("response.id");
-            Assertions.assertTrue(!groupId.isEmpty());
+            Assertions.assertFalse(groupId.isEmpty());
             properties.setProperty("groupId", groupId);
         });
         step("Создание нового обсуждения, получение id обсуждения", ()->{
             response = request.get(properties.getProperty("baseURI")+ "board.addTopic?title=" + "АТ обсуждение&text=АТ текст&group_id=" + groupId + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
             topicId = response.jsonPath().getString("response");
-            Assertions.assertTrue(!topicId.isEmpty());
+            Assertions.assertFalse(topicId.isEmpty());
         });
         step("Закрепление созданного обсуждения", ()->{
             request.get(properties.getProperty("baseURI")+ "board.fixTopic?topic_id=" + topicId + "&group_id=" + groupId + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
@@ -34,12 +34,12 @@ public class GroupTestAPI extends PropertiesTest {
         step("Создание комментария с текстом \"АТ комментарий1\"", ()->{
             response = request.get(properties.getProperty("baseURI")+ "board.createComment?message=АТ комментарий1&topic_id=" + topicId + "&group_id=" + groupId + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
             comment1 =response.jsonPath().getString("response");
-            Assertions.assertTrue(!comment1.isEmpty());
+            Assertions.assertFalse(comment1.isEmpty());
         });
         step("Создание комментария с текстом \"АТ комментарий2\"", ()->{
             response = request.get(properties.getProperty("baseURI")+ "board.createComment?message=АТ комментарий2&topic_id=" + topicId + "&group_id=" + groupId + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
             comment2 =response.jsonPath().getString("response");
-            Assertions.assertTrue(!comment2.isEmpty());
+            Assertions.assertFalse(comment2.isEmpty());
         });
         step("Создание комментария с текстом \"АТ комментарий3\"", ()->{
             request.get(properties.getProperty("baseURI")+ "board.createComment?message=АТ комментарий3&topic_id=" + topicId + "&group_id=" + groupId + "&" + properties.getProperty("access_token")+properties.getProperty("V"));

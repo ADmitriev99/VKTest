@@ -27,12 +27,12 @@ public class AlbumTestAPI extends PropertiesTest {
         step("Создание нового альбома, получение id альбома",()->{
             response = request.get(properties.getProperty("baseURI")+ "photos.createAlbum?privacy_view=only me&title=" + "АТ альбом 1&" + properties.getProperty("access_token")+properties.getProperty("V"));
             album1 = response.jsonPath().getString("response.id");
-            Assertions.assertTrue(!album1.isEmpty());
+            Assertions.assertFalse(album1.isEmpty());
         });
         step("Получение адреса загрузки фотографии",()->{
             response = request.get(properties.getProperty("baseURI")+ "photos.getUploadServer?album_id=" + album1 + "&" + properties.getProperty("access_token")+properties.getProperty("V"));
             uploadUrl = response.jsonPath().getString("response.upload_url");
-            Assertions.assertTrue(!uploadUrl.isEmpty());
+            Assertions.assertFalse(uploadUrl.isEmpty());
         });
         step("Загрузка фотографии на сервер",()->{
             OkHttpClient client = new OkHttpClient().newBuilder()
@@ -52,9 +52,9 @@ public class AlbumTestAPI extends PropertiesTest {
             server = jsonObject.get("server").toString();
             photo = (String) jsonObject.get("photos_list");
             hash = (String) jsonObject.get("hash");
-            Assertions.assertTrue(!server.isEmpty());
-            Assertions.assertTrue(!photo.isEmpty());
-            Assertions.assertTrue(!hash.isEmpty());
+            Assertions.assertFalse(server.isEmpty());
+            Assertions.assertFalse(photo.isEmpty());
+            Assertions.assertFalse(hash.isEmpty());
             photo = photo.replace("}", "%7D");
             photo = photo.replace("{", "%7B");
             photo = photo.replaceAll("\"","%22");
@@ -63,7 +63,7 @@ public class AlbumTestAPI extends PropertiesTest {
             request = RestAssured.given().urlEncodingEnabled(false);
             response = request.get(properties.getProperty("baseURI")+ "photos.save?album_id=" + album1 + "&server=" +server + "&hash="+hash +"&photos_list="+ photo +"&" + properties.getProperty("access_token")+properties.getProperty("V"));
             photoId = response.jsonPath().getString("response[0].id");
-            Assertions.assertTrue(!photoId.isEmpty());
+            Assertions.assertFalse(photoId.isEmpty());
         });
         step("Установка фотографии в качестве обложки альбома",()->{
             request = RestAssured.given().urlEncodingEnabled(true);
@@ -78,7 +78,7 @@ public class AlbumTestAPI extends PropertiesTest {
         step("Создание нового альбома, получение id альбома",()->{
             response = request.get(properties.getProperty("baseURI")+ "photos.createAlbum?privacy_view=all&title=" + "АТ альбом 2&" + properties.getProperty("access_token")+properties.getProperty("V"));
             album2 = response.jsonPath().getString("response.id");
-            Assertions.assertTrue(!album2.isEmpty());
+            Assertions.assertFalse(album2.isEmpty());
             properties.setProperty("albumId", album2);
         });
         step("Перемещение фотографии во второй альбом",()->{

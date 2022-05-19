@@ -27,7 +27,7 @@ public class PhotoEditTestAPI extends PropertiesTest{
         step("Получение адреса для загрузки фотографии",()-> {
             response = request.get(properties.getProperty("baseURI")+ "photos.getOwnerPhotoUploadServer?" + properties.getProperty("access_token")+properties.getProperty("V"));
             uploadUrl = response.jsonPath().getString("response.upload_url");
-            Assertions.assertTrue(!uploadUrl.isEmpty());
+            Assertions.assertFalse(uploadUrl.isEmpty());
         });
         step ("Загрузка фотографии на сервер", ()->{
             OkHttpClient client = new OkHttpClient().newBuilder()
@@ -47,9 +47,9 @@ public class PhotoEditTestAPI extends PropertiesTest{
             server = jsonObject.get("server").toString();
             photo = (String) jsonObject.get("photo");
             hash = (String) jsonObject.get("hash");
-            Assertions.assertTrue(!server.isEmpty());
-            Assertions.assertTrue(!photo.isEmpty());
-            Assertions.assertTrue(!hash.isEmpty());
+            Assertions.assertFalse(server.isEmpty());
+            Assertions.assertFalse(photo.isEmpty());
+            Assertions.assertFalse(hash.isEmpty());
         });
         step ("Подтверждение загрузки фотографии, получение id фотографии", ()->{
             request.get(properties.getProperty("baseURI")+ "photos.saveOwnerPhoto?server=" + server + "&photo=" + photo +"&hash=" + hash + "&" + properties.getProperty("access_token")+properties.getProperty("V"));

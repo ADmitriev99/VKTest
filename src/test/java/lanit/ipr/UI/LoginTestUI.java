@@ -29,7 +29,7 @@ public class LoginTestUI extends PropertiesTest {
             Statement stmt = connection.createStatement();
             ResultSet rs=stmt.executeQuery(query);
             rs.next();
-            Assertions.assertTrue(password.hashCode()==rs.getInt(1));
+            Assertions.assertEquals(password.hashCode(), rs.getInt(1));
         });
         step("Логин на сайт \"VK.com\"",()-> {
             Buttons.login();
