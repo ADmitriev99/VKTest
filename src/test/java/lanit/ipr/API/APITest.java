@@ -19,7 +19,7 @@ import static lanit.ipr.API.ProfileEditTestAPI.ProfileEditStepAPI;
 @DisplayName("API Test on VK.com")
 public class APITest {
 
-    //@Test
+    @Test
     @Tag("API test")
     @Story("API test")
     @Description("API test on VK.com")

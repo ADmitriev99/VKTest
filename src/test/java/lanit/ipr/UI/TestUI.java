@@ -27,9 +27,9 @@ public class TestUI extends TestBase {
     @Description("UI test on VK.com")
     public void testOnUI() {
         step("Вход в VK.com", ()->{LoginStepUI();});
-        /*step("Редактирование профиля",()->{ProfileEditStepUI();});
+        step("Редактирование профиля",()->{ProfileEditStepUI();});
         step("Работа с беседой", ()->{MessageStepUI();});
         step("Работа с обсуждениями", ()->{DiscussionStepUI();});
-        step("Работа с фотографиями", ()->{PhotoStepUI();});*/
+        step("Работа с фотографиями", ()->{PhotoStepUI();});
     }
 }
