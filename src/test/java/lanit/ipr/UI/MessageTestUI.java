@@ -45,8 +45,8 @@ public class MessageTestUI {
         });
         step("Закрепление сообщения",()-> {
             Asserts.displayedByTextLike("(ред.)");
-            Asserts.displayedByClass("ui_clean_list im-mess-stack--mess _im_stack_messages");
-            Buttons.clickByClass("ui_clean_list im-mess-stack--mess _im_stack_messages");
+            Asserts.displayedByClass("im-mess--text wall_module _im_log_body");
+            Buttons.clickByClass("im-mess--text wall_module _im_log_body");
             Asserts.displayedByAriaLabel("Закрепить сообщение");
             Buttons.clickByAriaLabel("Закрепить сообщение");
         });
