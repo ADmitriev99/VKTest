@@ -1,8 +1,8 @@
 package lanit.ipr.UI;
 
-import lanit.ipr.elements.Asserts;
-import lanit.ipr.elements.buttons.Buttons;
-import lanit.ipr.elements.textForms.TextForms;
+import lanit.ipr.actions.Asserts;
+import lanit.ipr.actions.buttons.Buttons;
+import lanit.ipr.actions.textForms.TextForms;
 
 
 import static io.qameta.allure.Allure.step;

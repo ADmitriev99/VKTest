@@ -6,15 +6,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
+import static lanit.ipr.DriverSingleton.getInstance;
 import static lanit.ipr.UI.CleanTestUI.CleanStepUI;
 
-public class TestBase extends DriverTest {
+public class TestBase {
+
+    protected static WebDriver driver = getInstance();
 
     @Attachment(value = "{attachName}", type = "text/plain")
     public static String attachAsText(String attachName, String message) {
@@ -32,12 +34,8 @@ public class TestBase extends DriverTest {
     }
 
     @BeforeAll
-    public static void beforeHook(){
+    public static void beforeHook() {
         addListener("AllureSelenium", new AllureSelenide().screenshots(true).savePageSource(true));
-        System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://vk.com/");
     }
 

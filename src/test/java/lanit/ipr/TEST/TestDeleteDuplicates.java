@@ -11,6 +11,7 @@ import static lanit.ipr.DeleteDuplicates.deleteDuplicates;
 public class TestDeleteDuplicates {
     LinkedList<Integer> testList1 = new LinkedList<>();
     LinkedList<Integer> trueList1 = new LinkedList<>();
+
     @BeforeEach
     public void beforeHook() {
         testList1.clear();
@@ -53,6 +54,7 @@ public class TestDeleteDuplicates {
         deleteDuplicates(testList1);
         Assertions.assertEquals(testList1, trueList1);
     }
+
     @Test
     public void testSameNumbers() {
         testList1.add(1);
@@ -62,6 +64,7 @@ public class TestDeleteDuplicates {
         deleteDuplicates(testList1);
         Assertions.assertEquals(testList1, trueList1);
     }
+
     @Test
     public void testNullData() {
         testList1.add(1);
