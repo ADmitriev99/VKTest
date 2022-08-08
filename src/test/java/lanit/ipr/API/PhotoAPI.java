@@ -1,6 +1,5 @@
 package lanit.ipr.API;
 
-import io.restassured.response.Response;
 import lanit.ipr.PropertiesSingleton;
 import okhttp3.*;
 import org.json.JSONObject;
@@ -10,32 +9,41 @@ import java.io.File;
 import java.util.Properties;
 
 import static io.qameta.allure.Allure.step;
-import static lanit.ipr.actions.ResponseClass.getFromResponse;
 import static lanit.ipr.actions.ResponseClass.getRequest;
 import static okhttp3.Request.Builder;
 
 public class PhotoAPI {
     private static okhttp3.Response response2;
     private static String uploadUrl;
-    private static Response response;
     private static String server;
     private static String photo;
     private static String hash;
     private static String photoId;
     private static Properties properties = PropertiesSingleton.getInstance();
+    private static final String PHOTO_PATH = "./src/test/resources/P_20190812_163931.jpg";
 
-    public static void PhotoEditStepAPI() {
-        step("Получение адреса для загрузки фотографии", () -> {
-            uploadUrl = getRequest("photos.getOwnerPhotoUploadServer?", "response.upload_url");
-            Assertions.assertFalse(uploadUrl.isEmpty());
+    public static void photoEditStepAPI() {
+        getUploadURL();
+        uploadPhoto();
+        confirmUploadPhoto();
+    }
+
+    protected static void confirmUploadPhoto() {
+        step("Подтверждение загрузки фотографии, получение id фотографии", () -> {
+            getRequest("photos.saveOwnerPhoto?server=" + server + "&photo=" + photo + "&hash=" + hash + "&");
+            photoId = getRequest("photos.get?album_id=profile&", "response.items[0].id");
+            properties.setProperty("mainPhotoId", photoId);
         });
+    }
+
+    protected static void uploadPhoto() {
         step("Загрузка фотографии на сервер", () -> {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                    .addFormDataPart("photo", "./src/test/resources/P_20190812_163931.jpg",
+                    .addFormDataPart("photo", PHOTO_PATH,
                             RequestBody.create(MediaType.parse("application/octet-stream"),
-                                    new File("./src/test/resources/P_20190812_163931.jpg")))
+                                    new File(PHOTO_PATH)))
                     .build();
             Request request2 = new Builder()
                     .url(uploadUrl)
@@ -51,11 +59,12 @@ public class PhotoAPI {
             Assertions.assertFalse(photo.isEmpty());
             Assertions.assertFalse(hash.isEmpty());
         });
-        step("Подтверждение загрузки фотографии, получение id фотографии", () -> {
-            getRequest("photos.saveOwnerPhoto?server=" + server + "&photo=" + photo + "&hash=" + hash + "&");
-            photoId = getRequest("photos.get?album_id=profile&", "response.items[0].id");
-            properties.setProperty("mainPhotoId", photoId);
-        });
+    }
 
+    protected static void getUploadURL() {
+        step("Получение адреса для загрузки фотографии", () -> {
+            uploadUrl = getRequest("photos.getOwnerPhotoUploadServer?", "response.upload_url");
+            Assertions.assertFalse(uploadUrl.isEmpty());
+        });
     }
 }

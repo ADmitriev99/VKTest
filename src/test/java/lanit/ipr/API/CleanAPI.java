@@ -11,7 +11,7 @@ public class CleanAPI {
 
     protected static Properties properties = PropertiesSingleton.getInstance();
 
-    public static void CleanStepAPI() {
+    public static void cleanStepAPI() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

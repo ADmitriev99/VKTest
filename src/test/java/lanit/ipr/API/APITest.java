@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
-import static lanit.ipr.API.AlbumAPI.AlbumStep;
-import static lanit.ipr.API.CleanAPI.CleanStepAPI;
-import static lanit.ipr.API.GroupAPI.GroupStepAPI;
-import static lanit.ipr.API.MessageAPI.MessageStepAPI;
-import static lanit.ipr.API.PhotoAPI.PhotoEditStepAPI;
-import static lanit.ipr.API.ProfileAPI.ProfileEditStepAPI;
+import static lanit.ipr.API.AlbumAPI.albumStep;
+import static lanit.ipr.API.CleanAPI.cleanStepAPI;
+import static lanit.ipr.API.GroupAPI.groupStepAPI;
+import static lanit.ipr.API.MessageAPI.messageStepAPI;
+import static lanit.ipr.API.PhotoAPI.photoEditStepAPI;
+import static lanit.ipr.API.ProfileAPI.profileEditStepAPI;
 
 @Epic("API test")
 @Feature("API test")
@@ -28,24 +28,24 @@ public class APITest {
     @Description("API test on VK.com")
     public void APITest() {
         step("Редактирование главной фотографии", () -> {
-            PhotoEditStepAPI();
+            photoEditStepAPI();
         });
         step("Редактирование данных профиля", () -> {
-            ProfileEditStepAPI();
+            profileEditStepAPI();
         });
         step("Работа с беседой", () -> {
-            MessageStepAPI();
+            messageStepAPI();
         });
         step("Работа с группой", () -> {
-            GroupStepAPI();
+            groupStepAPI();
         });
         step("Работа с альбомами", () -> {
-            AlbumStep();
+            albumStep();
         });
     }
 
     @AfterEach
     public void afterHook() {
-        CleanStepAPI();
+        cleanStepAPI();
     }
 }

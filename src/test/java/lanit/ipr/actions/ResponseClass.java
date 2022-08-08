@@ -12,7 +12,7 @@ public class ResponseClass {
 
     private static final Properties properties = PropertiesSingleton.getInstance();
 
-    private static String requestBuilder(String request){
+    private static String requestBuilder(String request) {
         return properties.getProperty("baseURI") + request + properties.getProperty("access_token") + properties.getProperty("V");
     }
 

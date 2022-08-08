@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
-import static lanit.ipr.UI.DiscussionTestUI.DiscussionStepUI;
-import static lanit.ipr.UI.MessageTestUI.MessageStepUI;
-import static lanit.ipr.UI.LoginTestUI.LoginStepUI;
-import static lanit.ipr.UI.PhotoTestUI.PhotoStepUI;
-import static lanit.ipr.UI.ProfileEditTestUI.ProfileEditStepUI;
+import static lanit.ipr.UI.GroupTestUI.groupStepUI;
+import static lanit.ipr.UI.MessageTestUI.messageStepUI;
+import static lanit.ipr.UI.LoginTestUI.loginStepUI;
+import static lanit.ipr.UI.PhotoTestUI.photoStepUI;
+import static lanit.ipr.UI.ProfileEditTestUI.profileEditStepUI;
 
 @Epic("UI test")
 @Feature("UI test")
@@ -27,19 +27,19 @@ public class TestUI extends TestBase {
     @Description("UI test on VK.com")
     public void testOnUI() {
         step("Вход в VK.com", () -> {
-            LoginStepUI();
+            loginStepUI();
         });
         step("Редактирование профиля", () -> {
-            ProfileEditStepUI();
+            profileEditStepUI();
         });
         step("Работа с беседой", () -> {
-            MessageStepUI();
+            messageStepUI();
         });
         step("Работа с обсуждениями", () -> {
-            DiscussionStepUI();
+            groupStepUI();
         });
         step("Работа с фотографиями", () -> {
-            PhotoStepUI();
+            photoStepUI();
         });
     }
 }

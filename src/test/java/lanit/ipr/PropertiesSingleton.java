@@ -10,7 +10,7 @@ public class PropertiesSingleton {
 
     public static Properties getInstance() {
         if (properties == null) {
-            properties = Properties();
+            properties = properties();
         }
         return properties;
     }
@@ -18,7 +18,7 @@ public class PropertiesSingleton {
     private PropertiesSingleton() {
     }
 
-    public static Properties Properties() {
+    public static Properties properties() {
 
         String path = "src/test/resources/resource.properties";
         java.util.Properties properties = new java.util.Properties();

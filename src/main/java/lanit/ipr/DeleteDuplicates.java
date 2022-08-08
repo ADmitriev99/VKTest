@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class DeleteDuplicates {
     public static void deleteDuplicates(LinkedList<Integer> head) {
         if (head == null) return;
-        for (int i=0; i<head.size(); i++){
+        for (int i = 0; i < head.size(); i++) {
             Iterator<Integer> outerIterator = head.iterator();
             boolean temp = false;
             while (outerIterator.hasNext()) {

@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 import static lanit.ipr.DriverSingleton.getInstance;
-import static lanit.ipr.UI.CleanTestUI.CleanStepUI;
+import static lanit.ipr.UI.CleanTestUI.cleanStepUI;
 
 public class TestBase {
 
@@ -44,7 +44,7 @@ public class TestBase {
         attachAsText("Последняя страница перед закрытием теста", driver.getCurrentUrl());
         attachScreenshot("Last screenshot");
         attachPageSource();
-        CleanStepUI();
+        cleanStepUI();
         driver.quit();
     }
 }

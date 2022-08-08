@@ -10,7 +10,7 @@ public class CleanTestUI {
 
     private static WebDriver driver = getInstance();
 
-    public static void CleanStepUI() {
+    public static void cleanStepUI() {
         try {
             Buttons.clickByText("Моя страница");
             Buttons.clickByClass("page_avatar_img");
